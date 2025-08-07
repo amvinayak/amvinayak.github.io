@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Manu Vinayak | Funky Data Pro</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Poppins:wght@400;600&family=Fira+Mono&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --gradient-bg: linear-gradient(135deg, #33c3ff 0%, #ff49e1 100%);
+      --soft-glow: #ffecbc99;
+      --highlight: #fdbb2d;
+      --primary: #6441a5;
+      --accent: #ffeeff;
+      --badge-gradient: linear-gradient(90deg, #ee9ca7, #ffdde1 80%);
+    }
+    body {
+      margin: 0;
+      font-family: 'Poppins', Arial, sans-serif;
+      background: var(--gradient-bg);
+      color: #242424;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+    .floating-bg {
+      position: absolute;
+      top: -150px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 600px;
+      height: 380px;
+      background: radial-gradient(circle at 60% 40%, #fff8a2bb 30%, #ffd2ef33 80%);
+      filter: blur(64px);
+      z-index: 0;
+      pointer-events: none;
+    }
+    .container {
+      position: relative;
+      z-index: 1;
+      max-width: 1200px;
+      margin: 40px auto 0 auto;
+      background:rgba(255,255,255,0.93);
+      box-shadow: 0 10px 44px 0 #233b6e33, 0 1.5px 2px #0001;
+      border-radius: 18px;
+      padding: 54px 32px 32px 32px;
+      overflow: hidden;
+    }
+    .profile-head {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      padding-bottom: 28px;
+      border-bottom: 3px solid #fff3ff;
+      position: relative;
+    }
+    .avatar {
+      width: 112px;
+      height: 112px;
+      border-radius: 50%;
+      box-shadow: 0 8px 32px var(--soft-glow), 0 4px 12px #ff81e099;
+      border: 5px solid #fff;
+      background: url('https://media.licdn.com/dms/image/v2/D5603AQGn-a16RaNtGg/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1704657703930?e=1757548800&v=beta&t=ReC2SkOzIrqV7l0mIbn2nticUUXTY3XAzmQcc6B7JyM') center center/cover, #ffe9f8;
+      /* Replace with your own profile photo for a personal touch! */
+      margin-left: 10px;
+      animation: float 4s infinite ease-in-out alternate;
+    }
+    @keyframes float {
+      to {transform: translateY(8px);}
+    }
+    .profile-details {
+      flex: 1;
+    }
+    .name {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 2.8em;
+      background: linear-gradient(90deg, #6441a5 40%, #fd607f 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+    .role {
+      font-size: 1.2em;
+      color: #6C38C3;
+      font-weight: 600;
+    }
+    .summary {
+      margin: 10px 0 0 0;
+      color: #5e6272;
+      font-size: 1.1em;
+      letter-spacing: .01em;
+      line-height: 1.5;
+      font-family: 'Fira Mono', monospace;
+    }
+    .contact {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+    }
+    .contact a, .contact div {
+      color: #3D225D;
+      margin: 2px 0;
+      text-decoration: none;
+      font-weight: 500;
+      font-family: 'Fira Mono', monospace;
+      font-size: 1em;
+      background: var(--badge-gradient);
+      border-radius: 8px;
+      padding: 5px 12px;
+      margin-bottom: 2px;
+      box-shadow: 0 2px 8px #ffd5fa3a;
+      transition: background 0.2s;
+    }
+    .contact a:hover {background: linear-gradient(90deg,#fdbb2d, #fd607f 100%); color: #3a1175;}
+    h2 {
+      margin-top: 42px;
+      font-family: 'Montserrat', sans-serif;
+      color: #fd607f;
+      font-size: 1.35em;
+      position: relative;
+      margin-bottom: 18px;
+      letter-spacing: 0.012em;
+    }
+    h2::after {
+      content: '';
+      display: block;
+      margin-top: 4px;
+      width: 60px;
+      height: 5px;
+      border-radius: 3px;
+      background: linear-gradient(90deg,#fd607f 20%,#ffeeff 100%);
+    }
+    .section {
+      margin-bottom: 36px;
+      position: relative;
+    }
+    .card {
+      background: var(--accent);
+      border-radius: 12px;
+      box-shadow: 0 4px 32px #fa75fa18;
+      padding: 25px 28px 18px 22px;
+      margin-bottom: 18px;
+      animation: fadein .8s;
+      transition: box-shadow 0.17s;
+      border-left: 9px solid var(--highlight);
+    }
+    @keyframes fadein {from {opacity: 0; transform: translateY(30px);} to {opacity:1; transform: none;}}
+    .card:hover { box-shadow: 0 6px 32px #e43f6f2a;}
+    ul.skills-list, ul.awards-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap:14px;
+      padding: 0;
+      margin: 10px 0 0 0;
+      list-style: none;
+    }
+    .skills-list li, .awards-list li {
+      padding: 6px 16px;
+      background: linear-gradient(90deg, #ffd6e8 60%, #fff5c6 100%);
+      color: #7f1fa2;
+      border-radius: 17px;
+      font-weight: 600;
+      font-size: 1em;
+      font-family: 'Poppins', sans-serif;
+      box-shadow: 0 1px 10px #ffb0fc1e;
+      position: relative;
+      transition: transform 0.2s, box-shadow 0.25s;
+      cursor: pointer;
+    }
+    .skills-list li:hover, .awards-list li:hover {
+      transform: scale(1.08);
+      box-shadow: 0 3px 24px #aa72e851;
+      background: var(--badge-gradient);
+      color: #2a2e91;
+    }
+    .job-title {
+      font-weight: 700;
+      color: #ea0063;
+      font-size: 1.13em;
+      letter-spacing: 0.02em;
+    }
+    .job-dates {
+      color: #8a6fba;
+      font-size: 0.98em;
+      margin-left: 12px;
+      font-family: 'Fira Mono', monospace;
+    }
+    .company-link {
+      color: #4c26c6;
+      text-decoration: none;
+      font-size: 1.13em;
+      font-weight: 600;
+      margin-left: 10px;
+    }
+    .company-link:hover {color: #fd607f;}
+    ul {
+      margin: 10px 0 12px 24px;
+      padding-left: 14px;
+      line-height: 1.65;
+    }
+    @media (max-width:700px){
+      .container {padding: 12px;}
+      .profile-head{flex-direction:column; gap:18px;}
+      .avatar{width:80px; height:80px;}
+      .contact{align-items: flex-start;}
+    }
+  </style>
+</head>
+<body>
+  <div class="floating-bg"></div>
+  <div class="container">
+
+    <!-- Funky Profile Header -->
+    <div class="profile-head">
+      <div class="avatar"></div>
+      <div class="profile-details">
+        <div class="name">Manu Vinayak</div>
+        <div class="role">Data Engineering & BI Specialist</div>
+        <div class="summary">
+          Advanced SQL, Power BI (DAX), PySpark, AWS & Azure<br>
+          Enabling Data-Driven Business Growth
+        </div>
+      </div>
+      <div class="contact">
+        <a href="mailto:manuvinayak5@gmail.com">✉️ manuvinayak5@gmail.com</a>
+        <a href="https://wa.me/+919471858586" onclick="window.open(this.href, 'newwindow'); return false;">📞 +91 7717764848</a>
+        <a href="https://www.linkedin.com/in/manuvinayak/" onclick="window.open(this.href, 'newwindow'); return false;">🌐 LinkedIn</a>
+        <a href="https://maps.app.goo.gl/tg1JVWhisNyumKnh7" onclick="window.open(this.href, 'newwindow'); return false;">📍 Purnia, Bihar, India</a>
+      </div>
+    </div>
+
+    <!-- Funky Section: Summary -->
+    <section class="section">
+      <h2>Professional Summary</h2>
+      <div class="card">
+        🎯 Results-driven Data Engineering & Business Intelligence professional with 3.5+ years of experience designing scalable BI solutions and delivering actionable insights for leading FMCG and consulting clients. Proven expertise in building advanced Power BI datasets for Big Data environments, supporting 50+ dynamic reports and dashboards across diverse business functions.
+<br>
+🎯 Skilled in end-to-end data pipeline development, including complex SQL optimization, ETL architecture, and Big Data processing using Spark and Azure Databricks. Adept at deploying cloud-native solutions on AWS and Azure to create secure, high-performance analytics platforms.
+<br>
+🎯 Led impactful data migration projects, enhancing reporting efficiency by 30%, doubling availability, and cutting costs by 40% through strategic transitions from Azure Analysis Services to Power BI semantic models. Strong background in automating reporting workflows to boost decision-making speed and visibility.
+<br>
+🎯 Technical proficiency: Power BI, DAX, SQL, Python (PySpark), Azure, AWS. Recognized for driving analytics transformation, optimizing workflows, and aligning data strategy with business goals. Passionate about integrating AI into BI ecosystems to unlock deeper business insights.
+      </div>
+    </section>
+
+    <!-- Skills -->
+    <section class="section">
+      <h2>Technical Skills</h2>
+      <ul class="skills-list">
+        <li>Power BI</li>
+        <li>DAX</li>
+        <li>Power Query</li>
+        <li>Advanced SQL & DBT</li>
+        <li>Python (PySpark)</li>
+        <li>Azure Databricks</li>
+        <li>Power Automate</li>
+        <li>Data Storytelling</li>
+        <li>FMCG Analytics</li>
+        <li>Advanced Excel</li>
+        <li>Cloud: AWS/Azure</li>
+      </ul>
+    </section>
+
+    <!-- Experience -->
+    <section class="section">
+      <h2>Professional Experience</h2>
+      <div class="card">
+        <span class="job-title">Consultant</span>
+        <span class="job-dates">Deloitte Consulting India, Kolkata (Remote) · May 2024–Present</span>
+        <a class="company-link" href="https://www.linkedin.com/company/1038/" target="_blank">Deloitte</a>
+        <ul>
+          <li>Designed and optimized over 100 complex SQL queries supporting financial modeling and acquisition analysis for major FMCG clients, improving data accuracy and decision-making speed.</li>
+          <li>Architected scalable BI solutions for enterprise clients, delivering 100+ Power BI reports and semantic models across global business units, improving executive reporting turnaround by 40% and reducing ad-hoc data requests by 60%.</li>
+<li>Led modernization of legacy BI infrastructure, migrating 5+ large-scale solutions to Power BI and Azure Fabric, resulting in a 35% cost reduction, 2x faster report refresh rates, and improved scalability across regions.</li>
+<li>Facilitated data strategy workshops with senior stakeholders across sales, finance, and operations, translating complex requirements into data products that improved stakeholder alignment and boosted BI adoption rates by 50%.</li>
+<li>Established and enforced BI governance frameworks across teams, standardizing 30+ Power BI datasets and implementing reusable DAX patterns that cut development time by 25% while enhancing data accuracy and trust.</li>
+<li>Mentored and upskilled a team of 6+ analysts and engineers, leading to a 40% increase in team delivery velocity and improved quality in dashboard design, query optimization, and automation workflows.</li>
+<li>Integrated AI-driven insights into Power BI dashboards, leveraging Azure OpenAI and Python-based models to deliver early anomaly detection and predictive metrics—helping stakeholders make proactive decisions, reducing issue response times by 30%.</li>
+
+        </ul>
+      </div>
+      <div class="card">
+        <span class="job-title">Analyst</span>
+        <span class="job-dates">Deloitte Consulting India, India · Nov 2021—May 2024</span>
+        <a class="company-link" href="https://www.linkedin.com/company/1038/" target="_blank">Deloitte</a>
+        <ul>
+          <li>Engineered scalable PySpark data pipelines in Azure Databricks for large-scale data cleansing & transformation.</li>
+          <li>Built and maintained more than 50 executive-level Power BI dashboards using advanced DAX expressions, enabling real-time insights and strategic planning for senior leadership.</li>
+          <li>Created a maintenance dashboard leveraging full anti join techniques to identify and categorize missing, partially mapped, and unmapped data, improving data quality management and accuracy.</li>
+<li>Developed automated cost reports that extract and consolidate Azure-based expenses across different project tracks, eliminating manual presentation efforts and streamlining financial tracking.</li>
+<li>Led critical data migration initiatives from Azure Analysis Services (AAS) to Power BI semantic models for NRM, resulting in a 30% improvement in reporting efficiency, a 2x increase in report availability, and a 40% reduction in infrastructure costs.</li>
+<li>Collaborated with cross-functional teams across sales, finance, and IT departments to align BI outputs with business goals, driving increased stakeholder satisfaction and adoption.</li>
+<li>Automated key reporting workflows and integrated Power BI with Power Automate and SharePoint, reducing manual reporting efforts by over 50% and accelerating delivery timelines.</li>
+          <li>Resolved complex production issues, optimized legacy setups, and earned “go-to” reputation.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Education -->
+    <section class="section">
+      <h2>Education</h2>
+      <div class="card">
+        <strong>Bachelor of Computer Applications (BCA)</strong><br>
+        Vidya Vihar Institute of Engineering & Technology, Bihar<br>
+        <span style="color:#b942b3;">CGPA: 8.88 | 2018–2021</span>
+      </div>
+    </section>
+
+    <!-- Certifications -->
+    <section class="section">
+      <h2>Certifications</h2>
+      <ul class="skills-list">
+        <li>Azure AI Engineer Associate (AI-102)</li>
+        <li>Power Platform Functional Consultant (PL-200)</li>
+        <li>AWS Solutions Architect Associate (SAA-C03)</li>
+      </ul>
+    </section>
+
+    <!-- Achievements -->
+    <section class="section">
+      <h2>Achievements & Volunteering</h2>
+      <ul class="awards-list">
+        <li>Live the Dot at Deloitte</li>
+        <li>Move the Dot at Deloitte</li>
+        <li>Applause Award at Deloitte</li>
+        <li>Mentoring new hires</li>
+        <li>Analytics on-boarding & hiring ops</li>
+      </ul>
+    </section>
+  </div>
+</body>
+</html>
