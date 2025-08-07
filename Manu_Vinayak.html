@@ -22,6 +22,19 @@
       min-height: 100vh;
       overflow-x: hidden;
     }
+
+@keyframes colorCycle {
+  0% {
+    background-color: purple;
+  }
+  50% {
+    background-color: pink;
+  }
+  100% {
+    background-color: purple;
+  }
+}
+
     .floating-bg {
       position: absolute;
       top: -150px;
@@ -73,16 +86,18 @@
     .name {
       font-family: 'Montserrat', sans-serif;
       font-size: 2.8em;
-      background: linear-gradient(90deg, #6441a5 40%, #fd607f 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       font-weight: bold;
       margin-bottom: 8px;
+      animation: colorCycle 8s infinite;
     }
     .role {
       font-size: 1.2em;
-      color: #6C38C3;
       font-weight: 600;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: colorCycle 8s infinite;
     }
     .summary {
       margin: 10px 0 0 0;
@@ -330,4 +345,3 @@
   </div>
 </body>
 </html>
-
